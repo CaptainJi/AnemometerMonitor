@@ -49,11 +49,12 @@ def login():
     options.add_argument('--start-maximized')  # 最大化
 
     driver = webdriver.Chrome(executable_path=driver_path, chrome_options=options)
+    # driver = webdriver.Chrome()
     driver.get('https://natapp.cn/login')
     driver.maximize_window()
     try:
         logging.info('开始登录')
-        driver.find_element_by_id('login').send_keys('')
+        driver.find_element_by_id('login').send_keys('15104572286')
     except NoSuchElementException:
         driver.get_screenshot_as_file(screenshots_path + '登录异常' + now + '.png')
         logging.warning('登录异常；请查看登录截图“./screenshots/登录异常' + now + '.png”')
@@ -64,7 +65,7 @@ def login():
         driver.close()
         return res_html
     else:
-        driver.find_element_by_id('password').send_keys('')
+        driver.find_element_by_id('password').send_keys('asdf87468764')
         driver.implicitly_wait(1)
         driver.find_element_by_css_selector('#login_form > div:nth-child(6) > button').click()
         # driver.implicitly_wait(2)
